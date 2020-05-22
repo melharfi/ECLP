@@ -291,8 +291,6 @@ namespace The_Morpher
                 return intResult;
             else if (float.TryParse(str, out float floatResult))
                 return floatResult;
-            else if (decimal.TryParse(str, out decimal decimalResult))
-                return decimalResult;
             else if (bool.TryParse(str, out bool boolResult))
                 return boolResult;
             else if (char.TryParse(str, out char charResult))
@@ -303,43 +301,23 @@ namespace The_Morpher
         #region Handlers
         protected virtual void OnAddedArgs(AddedArgsEvents e)
         {
-            EventHandler<AddedArgsEvents> handler = AddedArgs;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            AddedArgs?.Invoke(this, e);
         }
         protected virtual void OnAddedFlags(AddedFlagsEvents e)
         {
-            EventHandler<AddedFlagsEvents> handler = AddedFlags;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            AddedFlags?.Invoke(this, e);
         }
         protected virtual void OnAddedProperties(AddedPropertiesEvents e)
         {
-            EventHandler<AddedPropertiesEvents> handler = AddedProperties;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            AddedProperties?.Invoke(this, e);
         }
         protected virtual void OnAddedCollections(AddedCollectionsEvents e)
         {
-            EventHandler<AddedCollectionsEvents> handler = AddedCollections;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            AddedCollections?.Invoke(this, e);
         }
         protected virtual void OnAddedExCollections(AddedExCollectionsEvents e)
         {
-            EventHandler<AddedExCollectionsEvents> handler = AddedExCollections;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            AddedExCollections?.Invoke(this, e);
         }
         #endregion
     }

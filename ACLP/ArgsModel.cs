@@ -9,7 +9,7 @@ namespace The_Morpher
     public class ArgsModel
     {
         /// <summary>
-        /// Type 1) Args are arguments could be any referenced primitif type like string, int, bool, float, dateTime, char and decimal ex "verbose 5 3,5 true --v".
+        /// Type 1) Args are arguments could be any referenced primitif type like string, int, bool, float, dateTime and char ex "verbose 5 3,5 true --v".
         /// Argument is parsed to it's appropriate type, otherwize it return the default value as string
         /// Make attention that positions of arguments is necessary so you can identify them in the Args list by there index.
         /// </summary>
