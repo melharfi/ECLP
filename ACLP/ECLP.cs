@@ -11,13 +11,25 @@ using The_Morpher.Events;
 
 namespace The_Morpher
 {
-    public class ACLP
+    public class ECLP
     {
+        #region define Verbs
+        public string FlagsVerb = "-f";
+        public string MultuFlagsVerb = "-f-m";
+        public string PropertiesVerb = "-p";
+        public string MutiPropertiesVerb = "-p-m";
+        public string CollectionsVerb = "-c";
+        public string MultiCollectionsVerb = "-c-m";
+        public string ExCollectionsVerb = "-xc";
+        #endregion
+
+        #region Events
         public event EventHandler<AddedArgsEvents> AddedArgs;
         public event EventHandler<AddedFlagsEvents> AddedFlags;
         public event EventHandler<AddedPropertiesEvents> AddedProperties;
         public event EventHandler<AddedCollectionsEvents> AddedCollections;
         public event EventHandler<AddedExCollectionsEvents> AddedExCollections;
+        #endregion
 
         /// <summary>
         /// Command as one signle string
@@ -28,7 +40,7 @@ namespace The_Morpher
         /// String of arguments to ba parsed
         /// </summary>
         /// <param name="raw">string command</param>
-        public ACLP(string raw)
+        public ECLP(string raw)
         {
             this.Raw = raw.Trim();
         }
@@ -37,7 +49,7 @@ namespace The_Morpher
         /// Array of arguments to be parsed
         /// </summary>
         /// <param name="args">Arguments as Array</param>
-        public ACLP(string[] args)
+        public ECLP(string[] args)
         {
             this.Raw = string.Join(" ", args);
         }
@@ -49,9 +61,9 @@ namespace The_Morpher
 
             for (int i = 0; i < args.Count(); i++)
             {
-                // define type of data
-                // if no of the known attributes is found then it's a simple arg
-                if (args[i] != "-f" && args[i] != "-f-m" && args[i] != "-p" && args[i] != "-p-m" && args[i] != "-c" && args[i] != "-c-m" && args[i] != "-xc")
+                // define actual verb
+                // if no one of the known verbs is found then it's an Arg
+                if (args[i] != FlagsVerb && args[i] != MultuFlagsVerb && args[i] != PropertiesVerb && args[i] != MutiPropertiesVerb && args[i] != CollectionsVerb && args[i] != MultiCollectionsVerb && args[i] != ExCollectionsVerb)
                 {
                     // Args, ex "verbose 5 3,5 true --v"
                     object detectedType = DetectType(args[i]);
@@ -61,11 +73,11 @@ namespace The_Morpher
                     data.Args.Add(newValue);
 
                     #region TriggerEvent
-                    AddedArgsEvents aCLPArgsEvents = new AddedArgsEvents
+                    AddedArgsEvents aELPArgsEvents = new AddedArgsEvents
                     {
                         Arg = newValue
                     };
-                    OnAddedArgs(aCLPArgsEvents);
+                    OnAddedArgs(aELPArgsEvents);
                     #endregion
                 }
                 else
@@ -74,18 +86,18 @@ namespace The_Morpher
                     if (args.Count() == i + 1)
                         break;
 
-                    if (args[i] == "-f")
+                    if (args[i] == FlagsVerb)
                     {
                         // Flags, ex "-f Driver"
                         string flag = args[i + 1];
                         data.Flags.Add(flag);
 
                         #region TriggerEvent
-                        AddedFlagsEvents aCLPFlagsEvents = new AddedFlagsEvents
+                        AddedFlagsEvents aELPFlagsEvents = new AddedFlagsEvents
                         {
                             Flag = flag
                         };
-                        OnAddedFlags(aCLPFlagsEvents);
+                        OnAddedFlags(aELPFlagsEvents);
                         #endregion
 
                         #region Skip next argument
@@ -94,7 +106,7 @@ namespace The_Morpher
                             break;
                         #endregion
                     }
-                    else if(args[i] == "-f-m")
+                    else if(args[i] == MultuFlagsVerb)
                     {
                         // Multiple Flags, ex "-f-m driver,car,california"
                         string[] flags = args[i + 1].Split('|');
@@ -102,11 +114,11 @@ namespace The_Morpher
                         {
                             data.Flags.Add(flag);
                             #region TriggerEvent
-                            AddedFlagsEvents aCLPFlagsEvents = new AddedFlagsEvents
+                            AddedFlagsEvents aELPFlagsEvents = new AddedFlagsEvents
                             {
                                 Flag = flag
                             };
-                            OnAddedFlags(aCLPFlagsEvents);
+                            OnAddedFlags(aELPFlagsEvents);
                             #endregion
                         }
 
@@ -116,7 +128,7 @@ namespace The_Morpher
                             break;
                         #endregion
                     }
-                    else if (args[i] == "-p")
+                    else if (args[i] == PropertiesVerb)
                     {
                         // Properties, ex "-p driver=steave"
                         string[] prop = args[i + 1].Split('=');
@@ -128,9 +140,9 @@ namespace The_Morpher
                             data.Properties.Add(name, newValue);
 
                             #region TriggerEvent
-                            AddedPropertiesEvents aCLPPropertiesEvents = new AddedPropertiesEvents();
-                            aCLPPropertiesEvents.Property = new KeyValuePair<string, object>(name, newValue);
-                            OnAddedProperties(aCLPPropertiesEvents);
+                            AddedPropertiesEvents aELPPropertiesEvents = new AddedPropertiesEvents();
+                            aELPPropertiesEvents.Property = new KeyValuePair<string, object>(name, newValue);
+                            OnAddedProperties(aELPPropertiesEvents);
                             #endregion
                         }
 
@@ -140,7 +152,7 @@ namespace The_Morpher
                             break;
                         #endregion
                     }
-                    else if (args[i] == "-p-m")
+                    else if (args[i] == MutiPropertiesVerb)
                     {
                         // Properties, ex "-p-m driver=steave|age=30"
                         string[] raws = args[i + 1].Split('|');
@@ -155,9 +167,9 @@ namespace The_Morpher
                                 data.Properties.Add(name, newValue);
 
                                 #region TriggerEvent
-                                AddedPropertiesEvents aCLPPropertiesEvents = new AddedPropertiesEvents();
-                                aCLPPropertiesEvents.Property = new KeyValuePair<string, object>(name, newValue);
-                                OnAddedProperties(aCLPPropertiesEvents);
+                                AddedPropertiesEvents aELPPropertiesEvents = new AddedPropertiesEvents();
+                                aELPPropertiesEvents.Property = new KeyValuePair<string, object>(name, newValue);
+                                OnAddedProperties(aELPPropertiesEvents);
                                 #endregion
                             }
                         }
@@ -168,7 +180,7 @@ namespace The_Morpher
                             break;
                         #endregion
                     }
-                    else if (args[i] == "-c")
+                    else if (args[i] == CollectionsVerb)
                     {
                         // Properties, ex "-c players=steave|john|clark"
                         string[] col = args[i + 1].Split('=');
@@ -186,9 +198,9 @@ namespace The_Morpher
                             data.Collections.Add(name, values);
 
                             #region TriggerEvent
-                            AddedCollectionsEvents aCLPCollectionsEvents = new AddedCollectionsEvents();
-                            aCLPCollectionsEvents.Collections = new KeyValuePair<string, object[]>(name, values);
-                            OnAddedCollections(aCLPCollectionsEvents);
+                            AddedCollectionsEvents aELPCollectionsEvents = new AddedCollectionsEvents();
+                            aELPCollectionsEvents.Collections = new KeyValuePair<string, object[]>(name, values);
+                            OnAddedCollections(aELPCollectionsEvents);
                             #endregion
                         }
 
@@ -198,7 +210,7 @@ namespace The_Morpher
                             break;
                         #endregion
                     }
-                    else if (args[i] == "-c-m")
+                    else if (args[i] == MultiCollectionsVerb)
                     {
                         // Properties, ex "-c-m players=steave|john|clark/ages=21|15|30"
                         string[] raws = args[i + 1].Split('/');
@@ -219,9 +231,9 @@ namespace The_Morpher
                                 data.Collections.Add(name, values);
 
                                 #region TriggerEvent
-                                AddedCollectionsEvents aCLPCollectionsEvents = new AddedCollectionsEvents();
-                                aCLPCollectionsEvents.Collections = new KeyValuePair<string, object[]>(name, values);
-                                OnAddedCollections(aCLPCollectionsEvents);
+                                AddedCollectionsEvents aELPCollectionsEvents = new AddedCollectionsEvents();
+                                aELPCollectionsEvents.Collections = new KeyValuePair<string, object[]>(name, values);
+                                OnAddedCollections(aELPCollectionsEvents);
                                 #endregion
                             }
                         }
@@ -232,7 +244,7 @@ namespace The_Morpher
                             break;
                         #endregion
                     }
-                    else if (args[i] == "-xc")
+                    else if (args[i] == ExCollectionsVerb)
                     {
                         // Extanded Collection, ex "-xc players=steave:21|john:15|clark:30"
                         string[] col = args[i + 1].Split('=');
@@ -257,9 +269,9 @@ namespace The_Morpher
                             data.ExCollections.Add(name, l);
 
                             #region TriggerEvent
-                            AddedExCollectionsEvents aCLPExCollectionsEvents = new AddedExCollectionsEvents();
-                            aCLPExCollectionsEvents.ExCollections = new KeyValuePair<string, List<KeyValuePair<string, object>>>(name, l);
-                            OnAddedExCollections(aCLPExCollectionsEvents);
+                            AddedExCollectionsEvents aELPExCollectionsEvents = new AddedExCollectionsEvents();
+                            aELPExCollectionsEvents.ExCollections = new KeyValuePair<string, List<KeyValuePair<string, object>>>(name, l);
+                            OnAddedExCollections(aELPExCollectionsEvents);
                             #endregion
                         }
 

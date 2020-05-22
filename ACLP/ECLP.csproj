@@ -43,7 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArgsModel.cs" />
-    <Compile Include="ACLP.cs" />
+    <Compile Include="ECLP.cs" />
     <Compile Include="Events\AddedArgsEvents.cs" />
     <Compile Include="Events\AddedCollectionsEvents.cs" />
     <Compile Include="Events\AddedExCollectionsEvents.cs" />
