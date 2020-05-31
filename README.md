@@ -50,10 +50,13 @@ CommandResult result = eCLP.Parse();
 The object result store all data parsed.
 
 For argument you can check the **result.Args**, it's a list of object
+Arguments is "start 5 3.6 true T" will be parsed as string, int, float, bool and char.
 
 For flags you can use result.Flags, it's a list of strings
 
-For properties you can use result.Properties, it's a Dictionnary with string as entry/key and object as value Dictionary<string, object>
+For properties you can use result.Properties, it's a Dictionnary with string as entry/key and object as value Dictionary<string, object>.
+Flags are -p driver=steave -p age=30 and will be parsed as string.
+
 
 For collections you can use result.Collections, it's a dictionnary with string as entry/key and array object as value Dictionary<string, object>
 
