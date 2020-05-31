@@ -53,19 +53,19 @@ The object result store all data parsed.
 
 Arguments in the command line are 5 "start 5 3.6 true T" will be parsed as string, int, float, bool and char.
 
--For flags you can use result.Flags, it's a list of strings
+-For flags you can use **result.Flags**, it's a list of strings
 
 Flags are 3 "--verbose --noClip --showStats" in the command line and will be parsed as they are "string", usualy considered as --verbose = true if you want to have more sence.
 
--For properties you can use result.Properties, it's a Dictionnary with string as entry/key and object as value Dictionary<string, object>.
+-For properties you can use **result.Properties**, it's a Dictionnary with string as entry/key and object as value Dictionary<string, object>.
 
 Properties are 2 in the command line "-p driver=steave -p age=30" and will be parsed as driver is the key or name of property and steave it's value, same for the second property.
 
--For collections you can use result.Collections, it's a dictionnary with string as entry/key and array object as value Dictionary<string, object>
+-For collections you can use **result.Collections**, it's a dictionnary with string as entry/key and array object as value Dictionary<string, object>
 
 Collections in the command  line are 1 "-c players=steave|john|clark" will be parsed as a collection name is players and has 3 values, steave, john and clark.
 
--For ExtraCollection you can use ExCollection, it's a dictionnary with string as entry/key and list of array of entry and it's value Dictionary<string, List<KeyValuePair<string, object>>>.
+-For ExtraCollection you can use **result.ExCollection**, it's a dictionnary with string as entry/key and list of array of entry and it's value Dictionary<string, List<KeyValuePair<string, object>>>.
 
 "ExtraCollections are 1 in the command line -xc players=steave:21|john:15|clark:30" and its name is players and it has 3 sub properties, steave is the sub property name and 21 is it's value, and so on.
 
