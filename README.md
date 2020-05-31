@@ -35,3 +35,19 @@ Should be prefixed with -xc "-xc players=steave:21|john:15|clark:30 -xc adresses
 Properties are separated by Pipe |, and sub property name and it's values are separated by double point : .
 
 ***How to use ECLP***
+add reference using The_Morpher
+
+---C# code---
+ECLP eCLP = new ECLP("start 5 3.6 true T -p driver=steave -p age=30 -c players=steave|john|clark -xc players=steave:21|john:15|clark:30");
+CommandResult result = eCLP.Parse();
+-------------
+
+The object result store all data parsed.
+For argument you can check the **result.Args**, it's a list of object
+For flags you can use result.Flags, it's a list of strings
+For properties you can use result.Properties, it's a Dictionnary with string as entry/key and object as value Dictionary<string, object>
+For collections you can use result.Collections, it's a dictionnary with string as entry/key and array object as value Dictionary<string, object>
+For ExtraCollection you can use ExCollection, it's a dictionnary with string as entry/key and list of array of entry and it's value Dictionary<string, List<KeyValuePair<string, object>>>.
+
+
+
