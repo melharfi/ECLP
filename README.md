@@ -44,6 +44,7 @@ string commandLine = "start 5 3.6 true T -p driver=steave -p age=30 -c players=s
 ECLP eCLP = new ECLP(commandLine);
 // you can either use the array args as well
 CommandResult result = eCLP.Parse();
+
 -------------------------------
 
 The object result store all data parsed.
