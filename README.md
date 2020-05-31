@@ -38,10 +38,12 @@ Properties are separated by Pipe |, and sub property name and it's values are se
 add reference using The_Morpher
 
 ***C# code***
-
+--------------------------------
 ECLP eCLP = new ECLP("start 5 3.6 true T -p driver=steave -p age=30 -c players=steave|john|clark -xc players=steave:21|john:15|clark:30");
 
 CommandResult result = eCLP.Parse();
+
+-------------------------------
 
 The object result store all data parsed.
 
