@@ -76,66 +76,103 @@ You can use Link to make a seearch inside each of those collections or use a for
 You can register to a specific event type of verb.
 
 static void Main(string[] args)
+
         {
+        
             string commandLine = "start 5 3.6 true T --verbose --noClip --showStats -p driver=steave -p age=30 -c players=steave|john|clark -xc players=steave:21|john:15|clark:30";
 
             ECLP eCLP = new ECLP(commandLine);
+            
             eCLP.AddedArgs += ECLP_AddedArgs;
+            
             eCLP.AddedCollections += ECLP_AddedCollections;
+            
             eCLP.AddedExCollections += ECLP_AddedExCollections;
+            
             eCLP.AddedFlags += ECLP_AddedFlags;
+            
             eCLP.AddedProperties += ECLP_AddedProperties;
+            
             CommandResult result = eCLP.Parse();
 
             Console.ReadKey();
         }
 
         private static void ECLP_AddedProperties(object sender, The_Morpher.Events.AddedPropertiesEvents e)
+        
         {
+        
             // To show key
+            
             Console.WriteLine(e.Property.Key);
 
             // to do job when a specific property is triggered
+            
             if (e.Property.Key == "driver")
                 Console.WriteLine(e.Property.Value);
+                
             // this will show steave
+            
         }
 
         private static void ECLP_AddedFlags(object sender, The_Morpher.Events.AddedFlagsEvents e)
+        
         {
+        
             // To show value
+            
             Console.WriteLine(e.Flag);
 
             if (e.Flag == "--verbose")
                 Console.WriteLine("Verbose mode is activated");
+                
         }
 
         private static void ECLP_AddedExCollections(object sender, The_Morpher.Events.AddedExCollectionsEvents e)
+        
         {
+        
             // To show key, ExCollection's name
+            
             Console.WriteLine(e.ExCollections.Key);
 
             // loop true the sub properties
+            
             foreach(KeyValuePair<string, object> sub in e.ExCollections.Value)
+            
             {
+            
                 Console.WriteLine("sub property name is " + sub.Key + " and it's value is " + sub.Value + " and value type is " + sub.Value.GetType());
+                
             }
+            
         }
 
         private static void ECLP_AddedCollections(object sender, The_Morpher.Events.AddedCollectionsEvents e)
+        
         {
+        
             // To show key, Collection name
+            
             Console.WriteLine(e.Collections.Key);
 
             // to loop true sub values
+            
             foreach(object o in e.Collections.Value)
+            
             {
+            
                 Console.WriteLine("sub property is " + o + " and its type is " + o.GetType());
+                
             }
+            
         }
 
         private static void ECLP_AddedArgs(object sender, The_Morpher.Events.AddedArgsEvents e)
+        
         {
+        
             Console.WriteLine("Argument is " + e.Arg + " and its type is " + e.Arg.GetType());
+            
         }
 
