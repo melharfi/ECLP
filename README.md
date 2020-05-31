@@ -136,7 +136,7 @@ static void Main(string[] args)
             
             Console.WriteLine(e.ExCollections.Key);
 
-            // loop true the sub properties
+            // loop through the sub properties
             
             foreach(KeyValuePair<string, object> sub in e.ExCollections.Value)
             
@@ -156,7 +156,7 @@ static void Main(string[] args)
             
             Console.WriteLine(e.Collections.Key);
 
-            // to loop true sub values
+            // to loop through sub values
             
             foreach(object o in e.Collections.Value)
             
