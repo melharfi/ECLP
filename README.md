@@ -1,3 +1,4 @@
+<img src="assets/logo.png" width = "100">
 # ECLP
 Easy CommandLine Parser
 
