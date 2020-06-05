@@ -12,7 +12,8 @@ Easy CommandLine Parser
 
 Documentation in progress
 
-This command Line parser use 2 ways of parsing
+This command Line parser use 2 ways of parsing.
+
 Either from a string command or from an array like the one passed to the main method as parameters.
 
 just reference ECLP by nuget or be dowloading the latest release and add it to your references.
