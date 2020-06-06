@@ -10,8 +10,6 @@ Easy CommandLine Parser
 [![PayPal](https://img.shields.io/badge/paypal-donate-yellow.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VN92ND2CDMX92)
 ![GitHub language count](https://img.shields.io/github/languages/count/melharfi/ECLP?color=red)
 
-Documentation in progress
-
 This command Line parser use 2 ways of parsing.
 
 Either from a string command or from an array like the one passed to the main method as parameters.
@@ -37,8 +35,10 @@ Should be prefixed with -c "-c players=steave|john|clark -c ages=21|15|30" playe
 Should be prefixed with -xc "-xc players=steave:21|john:15|clark:30 -xc adresses=Japan:Tokyo|USA:Washington".
 Properties are separated by Pipe |, and sub property name and it's values are separated by double point : .
 
-***How to use ECLP***
-add reference using The_Morpher
+## *Tutorial*
+
+See tutorials section
+[https://melharfi.github.io/repos/ECLP/description.html](https://melharfi.github.io/repos/ECLP/description.html)
 
 ***C# code***
 --------------------------------
