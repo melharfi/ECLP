@@ -17,7 +17,7 @@ namespace The_Morpher
 
         /// <summary>
         /// Type 2) Flags are string type arguments without values, prefixed with double dash -- "--verbose --start --friendlyfire".
-        /// Value is parsed to appropriate type, otherwize the default format is 'string'
+        /// Value is not parsed and it's a string type
         /// </summary>
         public List<string> Flags = new List<string>();
 

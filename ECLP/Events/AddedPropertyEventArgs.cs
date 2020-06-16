@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace The_Morpher.Events
 {
-    public class AddedCollectionsEvents : EventArgs
+    public class AddedPropertyEventArgs : EventArgs
     {
-        public KeyValuePair<string, object[]> Collections;
+        public KeyValuePair<string, object> Property;
     }
 }

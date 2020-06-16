@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace The_Morpher.Events
 {
-    public class AddedFlagsEvents : EventArgs
+    public class AddedFlagsEventArgs : EventArgs
     {
         public string Flag { get; set; }
     }
